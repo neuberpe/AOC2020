@@ -24,27 +24,38 @@ gold = logic[key.index("shiny gold")]
 while i <len(gold):
 	res.append(gold[i])
 	i +=1
-print(gold)
+#print(gold)
 
-up = len(res)+1
+up = len(res)
 lo = 0
 print(res)
 
-for k in res[:200]:
-	if not k.isnumeric():
-		for m in key:
-			if k in m:
-				i=0
-				sol = logic[key.index(m)]
-				while i < len(sol):
-					if sol[i].isnumeric():
-						n = int(sol[i])*int(res[res.index(k)-1])
-						res.append(n)
-					else:
-						res.append(sol[i])
-					i += 1
+while up != lo:
+	for k in res[lo:up]:
+		if not k.isnumeric():
+			for m in key:
+				if k in m:
+					i=0
+					sol = logic[key.index(m)]
+					while i < len(sol):
+						if sol[i].isnumeric():
+							n = int(sol[i])*int(res[res.index(k)-1])
+							res.append(str(n))
+						else:
+							res.append(sol[i])
+						i += 1
+	lo=up
+	up=len(res)
+	print(res[lo:up])
 
+i=0
+check=0
+while i < len(res):
+	check +=int(res[i])
+	i +=2
 
+print(check)
 print(res)
-print(key)
-print(logic)
+
+#print(key)
+#print(logic)
